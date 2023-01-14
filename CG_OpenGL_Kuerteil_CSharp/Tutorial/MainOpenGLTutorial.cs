@@ -10,7 +10,7 @@ using Image = SixLabors.ImageSharp.Image;
 
 // See https://aka.ms/new-console-template for more information
 namespace OpenGL_Kuerteil;
-public class MainOpenGL
+public class MainOpenGLTutorial
 {
     private float angleX = 0.0f;
     private float angleY = 0.0f;
@@ -21,10 +21,23 @@ public class MainOpenGL
     private float rotate_arm_horizon = 0.0f;
     
     [STAThread]
-    public static void Main()
+    public static void MainTut()
     {
         Main mains = new Main(1280, 720, "Tutorial OpenGL Kuerteil");
-        mains.Run();
+        
+        float[] vertices = {
+            -0.5f, -0.5f, 0.0f, //Bottom-left vertex
+            0.5f, -0.5f, 0.0f, //Bottom-right vertex
+            0.0f,  0.5f, 0.0f  //Top vertex
+        };
+        int VertexBufferObject;
+        VertexBufferObject = GL.GenBuffer();
+        GL.BindBuffer(BufferTarget.ArrayBuffer, VertexBufferObject);
+        GL.BufferData(BufferTarget.ArrayBuffer, vertices.Length * sizeof(float), vertices, BufferUsageHint.StaticDraw);
+GL.BindBuffer(BufferTarget.ArrayBuffer, 0);
+GL.DeleteBuffer(VertexBufferObject);
+mains.Run();
+        
         /*
         GameWindowSettings gws = GameWindowSettings.Default;
         NativeWindowSettings nws = NativeWindowSettings.Default;

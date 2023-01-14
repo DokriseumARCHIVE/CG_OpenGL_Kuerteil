@@ -31,8 +31,11 @@ public class Main : GameWindow
 
     protected override void OnResize(ResizeEventArgs e)
     {
-        GL.Viewport(0,0,e.Width,e.Height);
+        //GL.Viewport(0,0,e.Width,e.Height);
+        //base.OnResize(e);
         base.OnResize(e);
+
+        GL.Viewport(0, 0, e.Width, e.Height);
     }
 
     protected override void OnLoad()
@@ -46,11 +49,20 @@ public class Main : GameWindow
 
         //Image _icon = new Image(loadedIcon.Width, loadedIcon.Height, loadedIcon.Data);
         //Icon = new WindowIcon(_icon);
+        //base.OnLoad();
         base.OnLoad();
+
+        GL.ClearColor(0.2f, 0.3f, 0.3f, 1.0f);
     }
 
-    protected override void OnRenderFrame(FrameEventArgs args)
+    protected override void OnRenderFrame(FrameEventArgs e)
     {
-        base.OnRenderFrame(args);
+        base.OnRenderFrame(e);
+
+        GL.Clear(ClearBufferMask.ColorBufferBit);
+
+        //Code goes here.
+
+        SwapBuffers();
     }
 }
